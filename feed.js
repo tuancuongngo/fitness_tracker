@@ -25,10 +25,10 @@ app.get("/workout", (req, res) => {
 
 // First workout to be logged in backend server
 const stuff = new Workout({
-    username: "ngoct",
+    name: "ngoct",
     exercise: "Bench Press",
-    duration: 60,
-    mood: "Need to go heavier next time",
+    weight: 230,
+    comment: "Need to go heavier next time",
 });
 
 stuff

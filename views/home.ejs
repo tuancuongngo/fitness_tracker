@@ -10,21 +10,21 @@
         <form action="/" method="POST">
             <table class="table">
                 <thead class="thead-light">
-                    <tr>
-                        <th>Username</th>
+                    <tr style="text-align: center;">
+                        <th>Name</th>
                         <th>Exercise</th>
-                        <th>Duration</th>
-                        <th>Mood</th>
+                        <th>Weight</th>
+                        <th>Comment</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(var i = 0; i < workouts.length; i++) { %>
-                        <tr>
-                            <td><%=workouts[i].username %></td>
+                        <tr style="text-align: center;">
+                            <td><%=workouts[i].name %></td>
                             <td><%=workouts[i].exercise%></td>
-                            <td><%=workouts[i].duration%></td>
-                            <td><%=workouts[i].mood%></td>
+                            <td><%=workouts[i].weight%></td>
+                            <td><%=workouts[i].comment%></td>
                             <td>
                                 <a href="/workout/<%=workouts[i]._id%>" class="btn border-shadow delete">
                                     <span><i class="fas fa-eye"></i></span>

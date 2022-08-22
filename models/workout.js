@@ -1,10 +1,10 @@
 const mongoose = require("mongoose");
 
 const workoutSchema = new mongoose.Schema({
-    username: { type: String, required: true },
+    name: { type: String, required: true },
     exercise: { type: String, required: true },
-    duration: { type: Number, required: true },
-    mood: { type: String, required: true },
+    weight: { type: Number, required: true },
+    comment: { type: String, required: true },
 });
 
 // Export the schema
