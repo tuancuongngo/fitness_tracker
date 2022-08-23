@@ -29,6 +29,7 @@ const stuff = new Workout({
     exercise: "Bench Press",
     weight: 230,
     comment: "Need to go heavier next time",
+    date: "2022-12-09",
 });
 
 stuff
