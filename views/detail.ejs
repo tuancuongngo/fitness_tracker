@@ -24,7 +24,7 @@
                             <td><%=workouts.exercise%></td>
                             <td><%=workouts.weight%></td>
                             <td><%=workouts.comment%></td>
-                            <td><%=workouts.date%></td>
+                            <td><%=workouts.date.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})%></td>
                         </tr>
                 </tbody>
             </table>

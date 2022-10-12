@@ -59,6 +59,7 @@ app.get("/new", async (req, res) => {
 
 // POST request to workout DB to add new workout
 app.post("/workouts", async (req, res) => {
+    //console.log(typeof req.body.date);
     const newWorkout = new Workout(req.body);
     await newWorkout.save();
     await Title.findOneAndUpdate( {name: newWorkout.name}, { $push: { exercises: newWorkout } }, { upsert: true, new: true });
