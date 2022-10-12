@@ -24,6 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true })); // Middleware for communication to backend
 app.use(methodOverride("_method")); // To edit data/workout in the DB. (Need npm install method-override)
+app.use(express.static("public"));
 
 // Route to retrieve workout
 app.get("/", async (req, res) => {
@@ -46,6 +47,7 @@ app.get("/new", (req, res) => {
 
 // POST request to workout DB to add new workout
 app.post("/workouts", async (req, res) => {
+    //console.log(typeof req.body.date);
     const newWorkout = new Workout(req.body);
     await newWorkout.save();
     res.redirect(`workout/${newWorkout._id}`); // Redirect to workout detail page
@@ -70,6 +72,11 @@ app.delete("/workout/:id", async (req, res) => {
     const { id } = req.params;
     const deleteWorkout = await Workout.findByIdAndDelete(id);
     res.redirect("/");
+});
+
+// About page
+app.get("/about", async (req, res) => {
+    res.render("about");
 });
 
 // Open port 3200

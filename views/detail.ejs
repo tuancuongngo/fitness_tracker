@@ -3,32 +3,34 @@
 
 <main id="site-main" style="height: 70vh;">
     <div class="container">
-        <div class="box-nav d-flex-justify-between">
-            <a href="/new">
-                <span>New Workout  <i class="fa fa-plus-circle"></i></i></span>
+        <table class="table">
+            <thead class="thead-light">
+                <tr style="text-align: center;">
+                    <th>Name</th>
+                    <th>Exercise</th>
+                    <th>Weight</th>
+                    <th>Comment</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                    <tr style="text-align: center;">
+                        <td><%=workouts.name %></td>
+                        <td><%=workouts.exercise%></td>
+                        <td><%=workouts.weight%></td>
+                        <td><%=workouts.comment%></td>
+                        <td><%=workouts.date.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"})%></td>
+                    </tr>
+            </tbody>
+        </table>
+        <div class="text-center d-flex flex-column">
+            <a href="/new" class="mb-1">
+                <button class="btn btn-dark">New Workout  <i class="fa fa-plus-circle"></i></button>
+            </a>
+            <a href="/">
+                <button class="btn btn-dark">Return Home <i class="fa-solid fa-house"></i></button>
             </a>
         </div>
-            <table class="table">
-                <thead class="thead-light">
-                    <tr style="text-align: center;">
-                        <th>Name</th>
-                        <th>Exercise</th>
-                        <th>Weight</th>
-                        <th>Comment</th>
-                        <th>Date</th>
-                    </tr>
-                </thead>
-                <tbody>
-                        <tr style="text-align: center;">
-                            <td><%=workouts.name %></td>
-                            <td><%=workouts.exercise%></td>
-                            <td><%=workouts.weight%></td>
-                            <td><%=workouts.comment%></td>
-                            <td><%=workouts.date%></td>
-                        </tr>
-                </tbody>
-            </table>
-       
     </div>
 </main>
 
