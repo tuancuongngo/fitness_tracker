@@ -89,6 +89,11 @@ app.delete("/workout/:id", async (req, res) => {
     res.redirect("/");
 });
 
+// About page
+app.get("/about", async (req, res) => {
+    res.render("about");
+});
+
 // Open port 3200
 app.listen(3200, () => {
     console.log("Port 3200 active");
