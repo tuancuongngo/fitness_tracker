@@ -24,6 +24,7 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true })); // Middleware for communication to backend
 app.use(methodOverride("_method")); // To edit data/workout in the DB. (Need npm install method-override)
+app.use(express.static("public"));
 
 // Route to retrieve workout
 app.get("/", async (req, res) => {
