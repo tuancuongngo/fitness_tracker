@@ -46,6 +46,7 @@ app.get("/new", (req, res) => {
 
 // POST request to workout DB to add new workout
 app.post("/workouts", async (req, res) => {
+    //console.log(typeof req.body.date);
     const newWorkout = new Workout(req.body);
     await newWorkout.save();
     res.redirect(`workout/${newWorkout._id}`); // Redirect to workout detail page
