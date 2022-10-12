@@ -1,13 +1,8 @@
 <%- include('partials/header') %>
 
-<main id="site-main" style="height: 70vh;">
+<main id="site-main" style="height: 70vh;" class="bg-secondary">
+    <img src="" alt="">
     <div class="container">
-        <div class="box-nav d-flex-justify-between">
-            <a href="/">
-                <span>BACK   <i class="fa fa-backward"></i></span>
-            </a>
-        </div>
-
         <form action="/workouts"  method="POST">
             <table class="table">
                 <thead class="thead-light">
@@ -37,7 +32,12 @@
                 </tbody>
             </table>
         </form>
-     
+        <div class="box-nav text-center d-flex flex-column">
+            <a href="/">
+                <button class="btn btn-dark">Return Home <i class="fa-solid fa-house"></i></button>
+            </a>
+        </div>
+
     </div>
 </main>
 
