@@ -15,19 +15,19 @@ const { title } = require("process");
 require("dotenv").config();
 
 // ****************************************************
-// mongoose.connect(  
-//     process.env.ATLAS_URI || 'mongodb://localhost:27017/todolistDB',
-//     {
-//         useNewUrlParser: true,
-//         useUnifiedTopology: true,
-//     },
-// );
+mongoose.connect(  
+    process.env.ATLAS_URI || 'mongodb://localhost:27017/fitnessTrackerDB',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    },
+);
 // ****************************************************
 
 
 // db connection
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true });
+// const uri = process.env.ATLAS_URI;
+// mongoose.connect(uri, { useNewUrlParser: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("MongoDB database connection established successfully");
@@ -63,7 +63,7 @@ app.post("/workouts", async (req, res) => {
     //console.log(typeof req.body.date);
     const newWorkout = new Workout(req.body);
     await newWorkout.save();
-    await Title.findOneAndUpdate( {name: newWorkout.name}, { $push: { exercises: newWorkout } }, { upsert: true, new: true });
+    await Title.findOneAndUpdate( {name: newWorkout.name}, { $push: { exercises: newWorkout } }, { upsert: true });
     res.redirect(`workout/${newWorkout._id}`); // Redirect to workout detail page
 });
 
@@ -78,6 +78,7 @@ app.get("/workout/:id/edit", async (req, res) => {
 app.put("/workout/:id", async (req, res) => {
     const { id } = req.params;
     const workout = await Workout.findByIdAndUpdate(id, req.body, { runValidators: true });
+    await Title.findOneAndUpdate({ name: workout.name, exercises: { $elemMatch: {_id: id} }}, { $set: { "exercises.$": req.body } });
     res.redirect(`/workout/${workout._id}`);
 });
 
@@ -86,7 +87,7 @@ app.delete("/workout/:id", async (req, res) => {
     const { id } = req.params;
     const workout = await Workout.findById(id);
     await Workout.findByIdAndDelete(id);
-    await Title.findOneAndUpdate({ name: workout.name }, { $pull: { exercises: { _id: id } } }, { runValidators: true });
+    await Title.findOneAndUpdate({ name: workout.name }, { $pull: { exercises: { _id: id } } });
     res.redirect("/");
 });
 
