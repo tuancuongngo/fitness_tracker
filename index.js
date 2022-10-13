@@ -3,18 +3,31 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const Workout = require("./models/workout"); // import workout schema
+const Title = require("./models/title"); // import title schema*******************************************
 
 // mongoose
 const mongoose = require("mongoose");
 const port = process.env.PORT || 5000; // Backend port
 const methodOverride = require("method-override");
+const { title } = require("process");
 
 // .env file
 require("dotenv").config();
 
+// ****************************************************
+mongoose.connect(  
+    process.env.ATLAS_URI || 'mongodb://localhost:27017/fitnessTrackerDB',
+    {
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+    },
+);
+// ****************************************************
+
+
 // db connection
-const uri = process.env.ATLAS_URI;
-mongoose.connect(uri, { useNewUrlParser: true });
+// const uri = process.env.ATLAS_URI;
+// mongoose.connect(uri, { useNewUrlParser: true });
 const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("MongoDB database connection established successfully");
@@ -41,7 +54,7 @@ app.get("/workout/:id", async (req, res) => {
 });
 
 // New workout page
-app.get("/new", (req, res) => {
+app.get("/new", async (req, res) => {
     res.render("new");
 });
 
@@ -50,6 +63,7 @@ app.post("/workouts", async (req, res) => {
     //console.log(typeof req.body.date);
     const newWorkout = new Workout(req.body);
     await newWorkout.save();
+    await Title.findOneAndUpdate( {name: newWorkout.name}, { $push: { exercises: newWorkout } }, { upsert: true });
     res.redirect(`workout/${newWorkout._id}`); // Redirect to workout detail page
 });
 
@@ -64,13 +78,16 @@ app.get("/workout/:id/edit", async (req, res) => {
 app.put("/workout/:id", async (req, res) => {
     const { id } = req.params;
     const workout = await Workout.findByIdAndUpdate(id, req.body, { runValidators: true });
+    await Title.findOneAndUpdate({ name: workout.name, exercises: { $elemMatch: {_id: id} }}, { $set: { "exercises.$": req.body } });
     res.redirect(`/workout/${workout._id}`);
 });
 
 // Delete a workout
 app.delete("/workout/:id", async (req, res) => {
     const { id } = req.params;
-    const deleteWorkout = await Workout.findByIdAndDelete(id);
+    const workout = await Workout.findById(id);
+    await Workout.findByIdAndDelete(id);
+    await Title.findOneAndUpdate({ name: workout.name }, { $pull: { exercises: { _id: id } } });
     res.redirect("/");
 });
 
