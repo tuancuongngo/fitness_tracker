@@ -3,11 +3,16 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const Workout = require("./models/workout"); // import workout schema
+const Exercise = require("./models/exercise");
 
 // mongoose
 const mongoose = require("mongoose");
 const port = process.env.PORT || 5000; // Backend port
 const methodOverride = require("method-override");
+
+// .env file for db connection
+require("dotenv").config();
+
 // db connection
 const uri = process.env.ATLAS_URI;
 mongoose.connect(uri, { useNewUrlParser: true });
@@ -15,9 +20,6 @@ const connection = mongoose.connection;
 connection.once("open", () => {
     console.log("MongoDB database connection established successfully");
 });
-
-// .env file
-require("dotenv").config();
 
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
