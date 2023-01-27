@@ -3,13 +3,14 @@ const express = require("express");
 const app = express();
 const path = require("path");
 const Workout = require("./models/workout"); // import workout schema
+const Exercise = require("./models/exercise");
 
 // mongoose
 const mongoose = require("mongoose");
 const port = process.env.PORT || 5000; // Backend port
 const methodOverride = require("method-override");
 
-// .env file
+// .env file for db connection
 require("dotenv").config();
 
 // db connection
@@ -29,7 +30,7 @@ app.use(express.static("public"));
 // Route to retrieve workout
 app.get("/", async (req, res) => {
     const workouts = await Workout.find({}); // Retrieve workout model and get all workouts
-    console.log(workouts);
+    //console.log(workouts);
     res.render("home", { workouts });
 });
 
