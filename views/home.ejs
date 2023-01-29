@@ -2,29 +2,29 @@
 
 <main id="site-main" style="height: 100vh;" class="d-flex align-items-center bg-light has-bg-img">
     
-    <div class="container text-center text-light">
-        <h1 class="mb-3 text-dark"><i class="fa-solid fa-rocket"></i> PR Feed</h1>
+    <div class="container text-light">
+        <h1 class="mb-3 text-dark text-center"><i class="fa-solid fa-bars-progress"></i> PR Feed</h1>
         <form action="/" method="POST">
-            <table class="table table-dark table-striped table-hover table-bordered rounded rounded-3 overflow-hidden" >
+            <table class="table table-dark table-striped table-hover rounded rounded-3 overflow-hidden" >
                 <thead class="thead-light">
-                    <tr style="text-align: center;" class="p-4">
-                        <th class="p-3 fs-5">Name</th>
-                        <th class="p-3 fs-5">Exercise</th>
-                        <th class="p-3 fs-5">Weight</th>
-                        <th class="p-3 fs-5">Comment</th>
-                        <th class="p-3 fs-5">Date</th>
-                        <th class="p-3 fs-5">Action</th>
+                    <tr class="p-4">
+                        <th class="p-3 fs-5 text-left">Name</th>
+                        <th class="p-3 fs-5 text-center">Exercise</th>
+                        <th class="p-3 fs-5 text-center">Weight</th>
+                        <th class="p-3 fs-5 text-center">Comment</th>
+                        <th class="p-3 fs-5 text-center">Date</th>
+                        <th class="p-3 fs-5 text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(var i = 0; i < workouts.length; i++) { %>
-                        <tr style="text-align: center;">
-                            <td><%=workouts[i].name %></td>
-                            <td><%=workouts[i].exercise%></td>
-                            <td><%=workouts[i].weight%></td>
-                            <td><%=workouts[i].comment%></td>
-                            <td><%=workouts[i].date.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) %></td>
-                            <td>
+                        <tr>
+                            <td class="text-left"><%=workouts[i].name %></td>
+                            <td class="text-center"><%=workouts[i].exercise%></td>
+                            <td class="text-center"><%=workouts[i].weight%></td>
+                            <td class="text-center"><%=workouts[i].comment%></td>
+                            <td class="text-center"><%=workouts[i].date.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) %></td>
+                            <td class="text-center">
                                 <div class="d-flex justify-content-center">
                                     <a href="/workout/<%=workouts[i]._id%>" class="btn border-shadow delete" title="View Workout Details">
                                         <span><i class="fa-sharp fa-solid fa-info text-light"></i></span>

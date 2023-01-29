@@ -1,6 +1,6 @@
 <%-include("partials/header")%>
 
-<main id="site-main" style="height: 100vh;" class="d-flex align-items-center bg-light">
+<main id="site-main" style="height: 100vh;" class="d-flex align-items-center bg-light.bg-gradient">
     <div class="container">
         <h1 class="mb-3 text-center"><i class="fa-solid fa-chart-line"></i> Most Active Users</h1>
         <form action="/" method="POST">
@@ -9,7 +9,7 @@
                     <tr class="p-4">
                         <th class="p-3 fs-5 text-center">#</th>
                         <th class="p-3 fs-5 text-left">Name</th>
-                        <th class="p-3 fs-5 text-center">Bio</th>
+                        <th class="p-3 fs-5 text-left">Bio</th>
                         <th class="p-3 fs-5 text-center"></th>
                     </tr>
                 </thead>
@@ -17,7 +17,13 @@
                     <% for(var i = 0; i < users.length; i++) { %>
                             <tr>
                                 <td class="text-center"><%=i+1%></td>
-                                <td>
+                                <td class="text-light" 
+                                    data-toggle="popover" 
+                                    data-trigger="hover" 
+                                    title="<%=users[i].name%>" 
+                                    data-placement="bottom" 
+                                    data-content="B: <%=users[i].bench%> | S: <%=users[i].squat%> | D: <%=users[i].deadlift%>" 
+                                >
                                     <a href="/user/<%=users[i]._id%>" class="text-light text-decoration-none" title="View User Profile" data-toggle="popover" data-content="Your popover content here">
                                         <span>
                                             <i class="fa-regular fa-circle-user fa-lg"></i> <%=users[i].name%> (<%=users[i].username%>)
@@ -38,6 +44,12 @@
                     <% } %>
                 </tbody>
             </table>
+            <!-- Enable popover -->
+            <script>
+                $(document).ready(function() {
+                  $('[data-toggle="popover"]').popover();
+                });
+            </script>
         </form>
     </div>
 </main>
