@@ -19,7 +19,7 @@
                 <tbody>
                     <% for(var i = 0; i < workouts.length; i++) { %>
                         <tr>
-                            <td class="px-2 text-center"><%=workouts[i].date.toLocaleDateString('en-us', { year:"numeric", month:"numeric", day:"numeric"}) %></td>
+                            <td class="px-2 text-center"><%=workouts[i].date.toLocaleDateString('en-us', { year:"2-digit", month:"numeric", day:"numeric"}) %></td>
                             <td class="px-2 text-left"><%=workouts[i].name %></td>
                             <td class="px-2 text-left"><%=workouts[i].exercise%></td>
                             <td class="px-2 text-center border border-danger"><%=workouts[i].weight%></td>
