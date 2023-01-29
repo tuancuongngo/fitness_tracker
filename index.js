@@ -80,6 +80,10 @@ app.get("/about", async (req, res) => {
     res.render("about");
 });
 
+app.get("/community", async (req, res) => {
+    res.render("community");
+});
+
 // Open port 3200
 app.listen(3200, () => {
     console.log("Port 3200 active");
