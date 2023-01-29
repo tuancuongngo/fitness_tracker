@@ -7,16 +7,16 @@
             <table class="table table-dark table-striped table-hover rounded rounded-3 overflow-hidden" >
                 <thead class="thead-light">
                     <tr class="p-4">
-                        <th class="p-3 fs-5 text-center">#</th>
-                        <th class="p-3 fs-5 text-left">Name</th>
-                        <th class="p-3 fs-5 text-left">Bio</th>
-                        <th class="p-3 fs-5 text-center"></th>
+                        <th class="p-3 fs-5 text-center border border-dark">#</th>
+                        <th class="p-3 fs-5 text-left border border-dark">Name</th>
+                        <th class="p-3 fs-5 text-left border border-dark">Bio</th>
+                        <th class="p-3 fs-5 text-center border border-dark"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(var i = 0; i < users.length; i++) { %>
                             <tr>
-                                <td class="text-center"><%=i+1%></td>
+                                <td class="text-center border border-dark"><%=i+1%></td>
                                 <td class="text-light" 
                                     data-toggle="popover" 
                                     data-trigger="hover" 
@@ -24,7 +24,7 @@
                                     data-placement="bottom" 
                                     data-content="B: <%=users[i].bench%> | S: <%=users[i].squat%> | D: <%=users[i].deadlift%>" 
                                 >
-                                    <a href="/user/<%=users[i]._id%>" class="text-light text-decoration-none" title="View User Profile" data-toggle="popover" data-content="Your popover content here">
+                                    <a href="/user/<%=users[i]._id%>" class="text-light text-decoration-none" title="View User Profile"">
                                         <span>
                                             <i class="fa-regular fa-circle-user fa-lg"></i> <%=users[i].name%> (<%=users[i].username%>)
                                         </span>

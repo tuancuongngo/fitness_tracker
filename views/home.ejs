@@ -8,24 +8,24 @@
             <table class="table table-dark table-striped table-hover rounded rounded-3 overflow-hidden" >
                 <thead class="thead-light">
                     <tr class="p-4">
-                        <th class="p-3 fs-5 text-left">Name</th>
-                        <th class="p-3 fs-5 text-center">Exercise</th>
-                        <th class="p-3 fs-5 text-center">Weight</th>
-                        <th class="p-3 fs-5 text-center">Comment</th>
                         <th class="p-3 fs-5 text-center">Date</th>
+                        <th class="p-3 fs-5 text-left">Name</th>
+                        <th class="p-3 fs-5 text-left">Exercise</th>
+                        <th class="p-3 fs-5 text-center border border-danger">Weight</th>
+                        <th class="p-3 fs-5 text-left">Comment</th>
                         <th class="p-3 fs-5 text-center"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <% for(var i = 0; i < workouts.length; i++) { %>
                         <tr>
-                            <td class="text-left"><%=workouts[i].name %></td>
-                            <td class="text-center"><%=workouts[i].exercise%></td>
-                            <td class="text-center"><%=workouts[i].weight%></td>
-                            <td class="text-center"><%=workouts[i].comment%></td>
-                            <td class="text-center"><%=workouts[i].date.toLocaleDateString('en-us', { year:"numeric", month:"short", day:"numeric"}) %></td>
-                            <td class="text-center">
-                                <div class="d-flex justify-content-center">
+                            <td class="px-2 text-center"><%=workouts[i].date.toLocaleDateString('en-us', { year:"numeric", month:"numeric", day:"numeric"}) %></td>
+                            <td class="px-2 text-left"><%=workouts[i].name %></td>
+                            <td class="px-2 text-left"><%=workouts[i].exercise%></td>
+                            <td class="px-2 text-center border border-danger"><%=workouts[i].weight%></td>
+                            <td class="px-2 text-left"><%=workouts[i].comment%></td>
+                            <td class="px-2 text-center">
+                                <div class="d-flex justify-content-center align-items-start">
                                     <a href="/workout/<%=workouts[i]._id%>" class="btn border-shadow delete" title="View Workout Details">
                                         <span><i class="fa-sharp fa-solid fa-info text-light"></i></span>
                                     </a>

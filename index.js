@@ -87,6 +87,13 @@ app.get("/community", async (req, res) => {
     res.render("community", { users });
 });
 
+// Details page of a workout
+app.get("/user/:id", async (req, res) => {
+    const { id } = req.params;
+    const users = await User.findById(id);
+    res.render("profile", { users });
+});
+
 // Delete a user
 app.delete("/user/:id", async (req, res) => {
     const { id } = req.params;
