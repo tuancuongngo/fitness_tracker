@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const Workout = require("./models/workout"); // import workout schema
 const Exercise = require("./models/exercise");
+const User = require("./models/user")
 
 // mongoose
 const mongoose = require("mongoose");
@@ -80,8 +81,17 @@ app.get("/about", async (req, res) => {
     res.render("about");
 });
 
+// Community page
 app.get("/community", async (req, res) => {
-    res.render("community");
+    const users = await User.find({});
+    res.render("community", { users });
+});
+
+// Delete a user
+app.delete("/user/:id", async (req, res) => {
+    const { id } = req.params;
+    const deleteWorkout = await User.findByIdAndDelete(id);
+    res.redirect("/community");
 });
 
 // Open port 3200
