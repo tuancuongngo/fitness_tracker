@@ -9,12 +9,13 @@
                     <tr class="p-4">
                         <th class="p-3 fs-5 text-center border border-dark">#</th>
                         <th class="p-3 fs-5 text-left border border-dark">Name</th>
+                        <th class="p-3 fs-5 text-left border border-dark">Location</th>
                         <th class="p-3 fs-5 text-left border border-dark">Bio</th>
                         <th class="p-3 fs-5 text-center border border-dark"></th>
                     </tr>
                 </thead>
                 <tbody>
-                    <% for(var i = 0; i < users.length; i++) { %>
+                    <% for(var i = 0; i < 10; i++) { %>
                             <tr>
                                 <td class="text-center border border-dark"><%=i+1%></td>
                                 <td class="text-light" 
@@ -26,10 +27,11 @@
                                 >
                                     <a href="/user/<%=users[i]._id%>" class="text-light text-decoration-none" title="View User Profile"">
                                         <span>
-                                            <i class="fa-regular fa-circle-user fa-lg"></i> <%=users[i].name%> (<%=users[i].username%>)
+                                            <img src="https://i.imgur.com/JgYD2nQ.jpg" class="img-rounded" width="35"> <%=users[i].name%> (<%=users[i].username%>)
                                         </span>
                                     </a>
                                 </td>
+                                <td><%=users[i].location%></td>
                                 <td><%=users[i].bio%></td>
                                 <td>
                                     <div class="d-flex justify-content-center">
