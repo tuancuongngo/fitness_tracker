@@ -1,0 +1,41 @@
+<%- include('partials/header') %>
+
+<main id="site-main bg-light" style="height: 100vh;">
+  <div class="container d-flex justify-content-center align-items-center flex-column">
+    <div class="user text-center mt-5 mb-2">
+      <div class="profile">
+        <a href="/user/<%=user._id%>/upload-avatar" class="text-light text-decoration-none" title="Upload new profile picture"">
+            <img src="https://i.imgur.com/JgYD2nQ.jpg" class="rounded-circle" width="150">
+        </a>
+      </div>
+    </div>
+    <div class="text-center">
+      <h4 class="mb-0"><%=user.name%></h4>
+      <span class="text-muted d-block mb-2"><%=user.location%></span>
+      <button class="btn btn-dark btn-sm follow">Follow</button>
+      <div class="d-flex justify-content-between align-items-center mt-4 px-4">
+        <div class="stats px-2">
+          <h6 class="mb-0">Bench</h6>
+          <span><%=user.bench%></span>
+        </div>
+        <div class="stats px-2">
+          <h6 class="mb-0">Squat</h6>
+          <span><%=user.squat%></span>
+        </div>
+        <div class="stats px-2">
+          <h6 class="mb-0">Deadlift</h6>
+          <span><%=user.deadlift%></span>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  </div>
+</main>
+
+
+
+<%- include('partials/footer') %>

@@ -1,0 +1,21 @@
+<%- include('partials/header') %>
+
+<main id="site-main" style="height: 100vh;" class="bg-light">
+    <div class="container">
+        <form action="/avatar-upload" method="POST" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="profileImage">Upload Profile Image for <%=user.name%></label>
+                <input type="file" name="new-avatar" id="new-avatar" class="form-control-file">
+                <input type="hidden" name="userId" value=<%=user._id%>>
+            </div>
+            <button type="submit" class="btn btn-dark">Submit</button>
+        </form>
+        <div class="box-nav text-center d-flex flex-column">
+            <a href="/">
+                <button class="btn btn-dark">Return Home <i class="fa-solid fa-house"></i></button>
+            </a>
+        </div>
+    </div>
+</main>
+
+<%- include('partials/footer') %>

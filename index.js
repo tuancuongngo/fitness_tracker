@@ -4,6 +4,7 @@ const app = express();
 const path = require("path");
 const Workout = require("./models/workout"); // import workout schema
 const Exercise = require("./models/exercise");
+const User = require("./models/user")
 
 // mongoose
 const mongoose = require("mongoose");
@@ -21,6 +22,20 @@ connection.once("open", () => {
     console.log("MongoDB database connection established successfully");
 });
 
+// multer for image upload
+const multer = require('multer');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, 'profile_images');
+    },
+    filename: (req, file, cb) => {
+        console.log(file);
+        cb(null, Date.now() + path.extname(file.originalname));
+    }
+});
+const upload = multer({ storage: storage });
+
+
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 app.use(express.urlencoded({ extended: true })); // Middleware for communication to backend
@@ -30,6 +45,7 @@ app.use(express.static("public"));
 // Route to retrieve workout
 app.get("/", async (req, res) => {
     const workouts = await Workout.find({}); // Retrieve workout model and get all workouts
+    workouts.sort((a, b) => new Date(b.date) - new Date(a.date));
     //console.log(workouts);
     res.render("home", { workouts });
 });
@@ -80,7 +96,79 @@ app.get("/about", async (req, res) => {
     res.render("about");
 });
 
+// Community page
+app.get("/community", async (req, res) => {
+    const users = await User.find({});
+    res.render("community", { users });
+});
+
+// Details page of an user
+app.get("/user/:id", async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    res.render("profile", { user });
+});
+
+// get request to change profile/avatar page
+app.get("/user/:id/upload-avatar", async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id);
+    res.render("upload-avatar", { user });
+});
+
+// POST request to user DB to add new profile image
+app.post("/avatar-upload", upload.single("new-avatar"), async (req, res) => {
+    // req.file is the `avatar` file
+    // req.body will hold the text fields, if there were any
+    const userId = req.body.userId;
+    const user = await User.findById(userId);
+    user.profileImage = req.file.path;
+    await user.save();
+    res.redirect(`/user/${user._id}`);
+});
+
+// Delete a user
+app.delete("/user/:id", async (req, res) => {
+    const { id } = req.params;
+    const deleteWorkout = await User.findByIdAndDelete(id);
+    res.redirect("/community");
+});
+
 // Open port 3200
 app.listen(3200, () => {
     console.log("Port 3200 active");
 });
+
+
+
+
+// const names = ["John", "Jane", "Jim", "Jessica", "Jack", "Jill", "Julie", "Josh", "Jordan", "Jasmine"];
+// const bios = [
+//     "Loves to lift heavy weights.",
+//     "Has a passion for powerlifting.",
+//     "Believes in the mind-muscle connection.",
+//     "Enjoys pushing the limits in the gym.",
+//     "Focuses on proper form in each exercise.",
+//     "Believes in the power of progressive overload.",
+//     "Has a goal to set personal records in every lift.",
+//     "Loves the feeling of a good pump.",
+//     "Takes recovery as seriously as the workout.",
+//     "Enjoys trying new workout routines."
+// ];
+
+// for (let i = 0; i < names.length; i++) {
+//         const user = new User({
+//             username: names[i] + "_" + i,
+//             name: names[i],
+//             location: "city, state",
+//             bio: bios[i],
+//             bench: Math.floor(Math.random() * 300),
+//             squat: Math.floor(Math.random() * 400),
+//             deadlift: Math.floor(Math.random() * 500)
+// });
+
+// user.save();
+
+// }
+
+

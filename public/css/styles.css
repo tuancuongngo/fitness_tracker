@@ -1,0 +1,13 @@
+.popover {
+    color: #fff; /* change font color */
+    border-color: #332D2D;
+    text-align: center;
+  }
+.popover-header {
+    background-color: #332D2D; /* change background color */
+    color: #fff; /* change font color */
+    border-color: #fff;
+}
+.popover-content {
+    color: #fff;
+}
