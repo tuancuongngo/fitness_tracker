@@ -52,7 +52,7 @@ app.get("/", async (req, res) => {
 
 // Signin page
 app.get("/signin", async (req, res) => {
-    res.render("signin");
+    res.render("signin", { message: ""});
 });
 
 app.post("/signin", async (req, res) => {
