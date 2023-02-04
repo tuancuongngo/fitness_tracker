@@ -50,6 +50,39 @@ app.get("/", async (req, res) => {
     res.render("home", { workouts });
 });
 
+// Signin page
+app.get("/signin", async (req, res) => {
+    res.render("signin");
+});
+
+app.post("/signin", async (req, res) => {
+    const email = req.body.email;
+    const pw = req.body.password;
+    User.findOne({ email: email }, function(err, foundUser) {
+        if (err) {
+            console.log(err);
+        }
+        else if (foundUser && foundUser.password === pw) {
+            res.redirect(`user/${foundUser._id}`);
+        }
+        else {
+            console.log("Incorrect Email or Password!");
+            res.render("signin", { message: "Incorrect Email or Password! Please Try Again!" });
+        }
+    });
+});
+
+// Sign up page
+app.get("/signup", async (req, res) => {
+    res.render("signup");
+});
+
+app.post("/signup", async(req, res) => {
+    const newUser = new User(req.body);
+    await newUser.save();
+    res.redirect(`user/${newUser._id}`);
+});
+
 // Details page of a workout
 app.get("/workout/:id", async (req, res) => {
     const { id } = req.params;

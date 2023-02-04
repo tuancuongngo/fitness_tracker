@@ -15,7 +15,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <% for(var i = 0; i < 10; i++) { %>
+                    <% for(var i = 0; i < Math.min(10, users.length) ; i++) { %>
                             <tr>
                                 <td class="text-center border border-dark"><%=i+1%></td>
                                 <td class="text-light" 
@@ -27,7 +27,7 @@
                                 >
                                     <a href="/user/<%=users[i]._id%>" class="text-light text-decoration-none" title="View User Profile"">
                                         <span>
-                                            <img src="https://i.imgur.com/JgYD2nQ.jpg" class="img-rounded" width="35"> <%=users[i].name%> (<%=users[i].username%>)
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-rounded" width="35"> <%=users[i].name%> (<%=users[i].username%>)
                                         </span>
                                     </a>
                                 </td>
