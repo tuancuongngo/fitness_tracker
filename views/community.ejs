@@ -1,0 +1,58 @@
+<%-include("partials/header")%>
+
+<main id="site-main" style="height: 100vh;" class="d-flex align-items-center bg-light.bg-gradient">
+    <div class="container">
+        <h1 class="mb-3 text-center"><i class="fa-solid fa-chart-line"></i> Most Active Users</h1>
+        <form action="/" method="POST">
+            <table class="table table-dark table-striped table-hover rounded rounded-3 overflow-hidden" >
+                <thead class="thead-light">
+                    <tr class="p-4">
+                        <th class="p-3 fs-5 text-center border border-dark">#</th>
+                        <th class="p-3 fs-5 text-left border border-dark">Name</th>
+                        <th class="p-3 fs-5 text-left border border-dark">Location</th>
+                        <th class="p-3 fs-5 text-left border border-dark">Bio</th>
+                        <th class="p-3 fs-5 text-center border border-dark"></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% for(var i = 0; i < 10; i++) { %>
+                            <tr>
+                                <td class="text-center border border-dark"><%=i+1%></td>
+                                <td class="text-light" 
+                                    data-toggle="popover" 
+                                    data-trigger="hover" 
+                                    title="<%=users[i].name%>" 
+                                    data-placement="bottom" 
+                                    data-content="B: <%=users[i].bench%> | S: <%=users[i].squat%> | D: <%=users[i].deadlift%>" 
+                                >
+                                    <a href="/user/<%=users[i]._id%>" class="text-light text-decoration-none" title="View User Profile"">
+                                        <span>
+                                            <img src="https://i.imgur.com/JgYD2nQ.jpg" class="img-rounded" width="35"> <%=users[i].name%> (<%=users[i].username%>)
+                                        </span>
+                                    </a>
+                                </td>
+                                <td><%=users[i].location%></td>
+                                <td><%=users[i].bio%></td>
+                                <td>
+                                    <div class="d-flex justify-content-center">
+                                        <form action="/user/<%=users[i]._id%>?_method=DELETE" method="POST" title="Delete User">
+                                            <button class="btn border-shadow delete">
+                                                <span><i class="fa-regular fa-trash-can text-light"></i></span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                    <% } %>
+                </tbody>
+            </table>
+            <!-- Enable popover -->
+            <script>
+                $(document).ready(function() {
+                  $('[data-toggle="popover"]').popover();
+                });
+            </script>
+        </form>
+    </div>
+</main>
+<%-include("partials/footer")%>
