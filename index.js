@@ -5,6 +5,7 @@ const path = require("path");
 const Workout = require("./models/workout"); // import workout schema
 const Exercise = require("./models/exercise");
 
+
 // mongoose
 const mongoose = require("mongoose");
 const port = process.env.PORT || 5000; // Backend port
@@ -78,6 +79,12 @@ app.delete("/workout/:id", async (req, res) => {
 // About page
 app.get("/about", async (req, res) => {
     res.render("about");
+});
+
+//React components
+app.get('/:filename', (req, res) => {
+  res.set('Content-Type', 'application/javascript');
+  res.sendFile(path.join(__dirname, 'views/components', req.params.filename));
 });
 
 // Open port 3200
