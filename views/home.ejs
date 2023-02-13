@@ -1,50 +1,51 @@
 <%-include("partials/header")%>
 
 <main id="site-main" style="height: 100vh;" class="d-flex align-items-center bg-light has-bg-img">
-    
     <div class="container text-light">
         <h1 class="mb-3 text-dark text-center"><i class="fa-solid fa-bars-progress"></i> PR Feed</h1>
         <form action="/" method="POST">
-            <table class="table table-dark table-striped table-hover rounded rounded-3 overflow-hidden" >
-                <thead class="thead-light">
-                    <tr class="p-4">
-                        <th class="p-3 fs-5 text-center">Date</th>
-                        <th class="p-3 fs-5 text-left">Name</th>
-                        <th class="p-3 fs-5 text-left">Exercise</th>
-                        <th class="p-3 fs-5 text-center border border-danger">Weight</th>
-                        <th class="p-3 fs-5 text-left">Comment</th>
-                        <th class="p-3 fs-5 text-center"></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% for(var i = 0; i < workouts.length; i++) { %>
-                        <tr>
-                            <td class="px-2 text-center"><%=workouts[i].date.toLocaleDateString('en-us', { year:"2-digit", month:"numeric", day:"numeric"}) %></td>
-                            <td class="px-2 text-left"><%=workouts[i].name %></td>
-                            <td class="px-2 text-left"><%=workouts[i].exercise%></td>
-                            <td class="px-2 text-center border border-danger"><%=workouts[i].weight%></td>
-                            <td class="px-2 text-left"><%=workouts[i].comment%></td>
-                            <td class="px-2 text-center">
-                                <div class="d-flex justify-content-center align-items-start">
-                                    <a href="/workout/<%=workouts[i]._id%>" class="btn border-shadow delete" title="View Workout Details">
-                                        <span><i class="fa-sharp fa-solid fa-info text-light"></i></span>
-                                    </a>
-                                    <a href="/workout/<%=workouts[i]._id%>/edit" class="btn border-shadow update" title="Edit Workout">
-                                        <span><i class="fa-regular fa-pen-to-square text-light"></i></span>
-                                    </a>
-                                    <form action="/workout/<%=workouts[i]._id%>?_method=DELETE" method="POST" title="Delete Workout">
-                                        <button class="btn border-shadow delete">
-                                            <span><i class="fa-regular fa-trash-can text-light"></i></span>
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
+            <div class="table-responsive px-2">
+                <table class="table w-auto mx-auto table-dark table-striped table-hover rounded rounded-3 overflow-hidden" >
+                    <thead class="thead-light">
+                        <tr class="p-4">
+                            <th class="px-1 px-md-5 fs-5 text-center">Date</th>
+                            <th class="px-1 px-md-5 fs-5 text-left">Name</th>
+                            <th class="px-1 px-md-5 fs-5 text-left">Exercise</th>
+                            <th class="px-1 px-md-4 fs-5 text-center border border-danger">Weight</th>
+                            <th class="px-1 px-md-5 fs-5 text-left d-none d-sm-table-cell">Comment</th>
+                            <th class="px-1 px-md-5 fs-5 text-center d-none d-sm-table-cell">Action</th>
                         </tr>
-                    <% } %>
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        <% for(var i = 0; i < workouts.length; i++) { %>
+                            <tr>
+                                <td class="px-2 text-center"><%=workouts[i].date.toLocaleDateString('en-us', { year:"2-digit", month:"numeric", day:"numeric"}) %></td>
+                                <td class="px-2 text-left"><%=workouts[i].name %></td>
+                                <td class="px-2 text-left"><%=workouts[i].exercise%></td>
+                                <td class="px-2 text-center border border-danger"><%=workouts[i].weight%></td>
+                                <td class="px-2 text-left d-none d-sm-table-cell"><%=workouts[i].comment%></td>
+                                <td class="px-2 text-center d-none d-sm-table-cell">
+                                    <div class="d-flex justify-content-center align-items-start">
+                                        <a href="/workout/<%=workouts[i]._id%>" class="btn border-shadow delete" title="View Workout Details">
+                                            <span><i class="fa-sharp fa-solid fa-info text-light"></i></span>
+                                        </a>
+                                        <a href="/workout/<%=workouts[i]._id%>/edit" class="btn border-shadow update" title="Edit Workout">
+                                            <span><i class="fa-regular fa-pen-to-square text-light"></i></span>
+                                        </a>
+                                        <form action="/workout/<%=workouts[i]._id%>?_method=DELETE" method="POST" title="Delete Workout">
+                                            <button class="btn border-shadow delete">
+                                                <span><i class="fa-regular fa-trash-can text-light"></i></span>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        <% } %>
+                    </tbody>
+                </table>
+            </div>
         </form>
-        <div class="text-center box-nav">
+        <div class="text-center p-2">
             <form action="/new">
                 <a href="/new">
                     <%-include("partials/btn_new_PR")-%>
