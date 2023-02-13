@@ -50,6 +50,15 @@ app.get("/", async (req, res) => {
     res.render("home", { workouts });
 });
 
+// Route to display workout page
+app.get("/pr-feed", async (req, res) => {
+    const workouts = await Workout.find({}); // Retrieve workout model and get all workouts
+    workouts.sort((a, b) => new Date(b.date) - new Date(a.date));
+    //console.log(workouts);
+    res.render("pr-feed", { workouts });
+});
+
+
 // Signin page
 app.get("/signin", async (req, res) => {
     res.render("signin", { message: ""});
