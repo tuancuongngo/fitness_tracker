@@ -11,3 +11,21 @@
 .popover-content {
     color: #fff;
 }
+
+.table-div-height-community {
+    height: 100vh;
+}
+
+.table-div-height-feed {
+    height: 100vh;
+}
+
+@media only screen and (max-width: 767px) {
+    .table-div-height-community {
+        height: 200vh;
+    }
+    .table-div-height-feed {
+        height: 140vh;
+    }
+
+}
