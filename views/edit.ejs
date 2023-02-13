@@ -1,43 +1,45 @@
 <%- include('partials/header') %>
 
-<main id="site-main bg-light" style="height: 100vh;">
-    <div class="container">
-        <div class="box-nav d-flex-justify-between">
-            <a href="/">
-                <span>BACK   <i class="fa fa-backward"></i></span>
-            </a>
+<main class="grad-bg d-flex justify-content-center" style="height: 100vh;">
+    <div class="grad-bg">
+        <div class="container">    
+            <form action="/workout/<%=workout._id%>?_method=PUT" method="POST">
+                <table class="table">
+                    <thead class="thead-light">
+                        <tr style="text-align: center;">
+                            <th>Name</th>
+                            <th>Exercise</th>
+                            <th>Weight</th>
+                            <th>Comment</th>
+                            <th>Date</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="text-align: center;">
+                            <td><input value="<%=workout.name%>" style="background-color: transparent; width: 110px; border-radius: 1px; text-align: center;" type="text" id="name" name="name" placeholder="name"></td>
+                            <td><input value="<%=workout.exercise%>"  style="background-color: transparent; width: 110px; border-radius: 1px; text-align: center;" class="input" type="text" id="exercise" name="exercise" placeholder="exercise"></td>
+                            <td><input value="<%=workout.weight%>"  style="background-color: transparent; width: 110px; border-radius: 1px; text-align: center;" class="input" type="number" id="weight" name="weight" placeholder="weight"></td>
+                            <td><input value="<%=workout.comment%>"  style="background-color: transparent; width: 210px; border-radius: 1px; text-align: center;" class="input" type="text" id="comment" name="comment" placeholder="comment"></td>
+                            <td><%=workout.date.toLocaleDateString('en-us', { year:"numeric", month:"numeric", day:"numeric"}) %></td>
+                            <td>
+                                <button class="btn border-shadow update">
+                                    SUBMIT
+                                </button>
+                             </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+            <div class="box-nav box-nav text-center d-flex flex-column">
+                <a href="/">
+                    <%-include("partials/btn_home")-%>
+                </a>
+            </div>
         </div>
 
-        <form action="/workout/<%=workout._id%>?_method=PUT" method="POST">
-            <table class="table">
-                <thead class="thead-light">
-                    <tr style="text-align: center;">
-                        <th>Name</th>
-                        <th>Exercise</th>
-                        <th>Weight</th>
-                        <th>Comment</th>
-                        <th>Date</th>
-                        <th></th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr style="text-align: center;">
-                        <td><input value="<%=workout.name%>" style="background-color: transparent; width: 110px; border-radius: 1px; text-align: center;" type="text" id="name" name="name" placeholder="name"></td>
-                        <td><input value="<%=workout.exercise%>"  style="background-color: transparent; width: 110px; border-radius: 1px; text-align: center;" class="input" type="text" id="exercise" name="exercise" placeholder="exercise"></td>
-                        <td><input value="<%=workout.weight%>"  style="background-color: transparent; width: 110px; border-radius: 1px; text-align: center;" class="input" type="number" id="weight" name="weight" placeholder="weight"></td>
-                        <td><input value="<%=workout.comment%>"  style="background-color: transparent; width: 210px; border-radius: 1px; text-align: center;" class="input" type="text" id="comment" name="comment" placeholder="comment"></td>
-                        <td><%=workout.date.toLocaleDateString('en-us', { year:"numeric", month:"numeric", day:"numeric"}) %></td>
-                        <td>
-                            <button class="btn border-shadow update">
-                                SUBMIT
-                            </button>
-                         </td>
-                    </tr>
-                </tbody>
-            </table>
-        </form>
-     
     </div>
+    
 </main>
 
 
