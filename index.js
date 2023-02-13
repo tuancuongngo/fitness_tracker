@@ -44,11 +44,17 @@ app.use(express.static("public"));
 
 // Route to retrieve workout
 app.get("/", async (req, res) => {
+    res.render("home");
+});
+
+// Route to display workout page
+app.get("/pr-feed", async (req, res) => {
     const workouts = await Workout.find({}); // Retrieve workout model and get all workouts
     workouts.sort((a, b) => new Date(b.date) - new Date(a.date));
     //console.log(workouts);
-    res.render("home", { workouts });
+    res.render("pr-feed", { workouts });
 });
+
 
 // Signin page
 app.get("/signin", async (req, res) => {

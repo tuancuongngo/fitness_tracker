@@ -1,63 +1,19 @@
 <%-include("partials/header")%>
 
-<main id="site-main" class="grad-bg table-div-height-feed d-flex align-items-center bg-light has-bg-img">
-    <div class="container text-light">
-        <h1 class="mb-3 text-dark text-center"><i class="fa-solid fa-bars-progress"></i> PR Feed</h1>
-        <form action="/" method="POST">
-            <div class="table-responsive px-2">
-                <table class="table w-auto mx-auto table-dark table-striped table-hover rounded rounded-3 overflow-hidden" >
-                    <thead class="thead-light">
-                        <tr class="p-4">
-                            <th class="py-3 px-4 fs-5">Date</th>
-                            <th class="py-3 px-2 px-md-4 fs-5 text-left">Name</th>
-                            <th class="py-3 px-2 px-md-4 fs-5 text-left">Exercise</th>
-                            <th class="py-3 px-2 fs-5">Weight (lb)</th>
-                            <th class="py-3 px-2 fs-5 text-left d-none d-sm-table-cell">Comment</th>
-                            <th class="py-3 px-2 fs-5 d-none d-sm-table-cell"></th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <% for(var i = 0; i < Math.min(10, workouts.length) ; i++) { %>
-                            <tr>
-                                <td class="px-4"><%=workouts[i].date.toLocaleDateString('en-us', { year:"2-digit", month:"2-digit", day:"2-digit"}) %></td>
-                                <td class="px-2 px-md-4 text-left">
-                                    <span>
-                                        <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-rounded" width="35"> <%=workouts[i].name %>
-                                    </span>
-                                </td>
-                                <td class="px-2 px-md-4 text-left"><%=workouts[i].exercise%></td>
-                                <td class="px-2"><%=workouts[i].weight%></td>
-                                <td class="px-2 text-left d-none d-sm-table-cell"><%=workouts[i].comment%></td>
-                                <td class="px-2 text-center d-none d-sm-table-cell">
-                                    <div class="d-flex justify-content-center align-items-start">
-                                        <a href="/workout/<%=workouts[i]._id%>" class="btn border-shadow delete" title="View Workout Details">
-                                            <span><i class="fa-sharp fa-solid fa-info text-light"></i></span>
-                                        </a>
-                                        <a href="/workout/<%=workouts[i]._id%>/edit" class="btn border-shadow update" title="Edit Workout">
-                                            <span><i class="fa-regular fa-pen-to-square text-light"></i></span>
-                                        </a>
-                                        <form action="/workout/<%=workouts[i]._id%>?_method=DELETE" method="POST" title="Delete Workout">
-                                            <button class="btn border-shadow delete">
-                                                <span><i class="fa-regular fa-trash-can text-light"></i></span>
-                                            </button>
-                                        </form>
-                                    </div>
-                                </td>
-                            </tr>
-                        <% } %>
-                    </tbody>
-                </table>
+<main id="site-main" class="grad-bg table-div-height-home d-flex flex-column justify-content-center align-items-center">
+        <div class="container">
+            <div class="d-flex justify-content-center mb-5"><img src="images/FL-logo-crop.png" alt="FitLog logo" class="img-fluid w-md-25"></div>
+            <h1 class="display-4 text-danger font-weight-bold mb-4">Welcome to the Ultimate Fitness Companion, FitLog!</h1>
+            <p class="lead text-dark mb-4">
+                Our web app is designed to help you achieve your fitness goals and more.
+                With our smart Personal Record (PR) tracking system, easily monitor your fitness progress and see your numbers go up over time.
+                We also give you the ability to compare your records with others in our fitness community, providing you with the motivation you need to keep pushing yourself. 
+                Click below to find out more!
+            </p>
+            <div class="d-flex justify-content-center">
+                <a href="/community" class="btn btn-danger btn-lg mb-3 tex">Find Community</a>
             </div>
-        </form>
-        <div class="text-center p-2">
-            <form action="/new">
-                <a href="/new">
-                    <%-include("partials/btn_new_PR")-%>
-                </a>
-            </form>
         </div>
-        <!-- <img src="images/bg.png" alt="" class="bg-img"> -->
-    </div>
 </main>
 
 
