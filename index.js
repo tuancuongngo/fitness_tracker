@@ -67,7 +67,7 @@ app.post("/signin", async (req, res) => {
         }
         else {
             console.log("Incorrect Email or Password!");
-            res.render("signin", { message: "Incorrect Email or Password! Please Try Again!" });
+            res.render("signin", { message: "Incorrect Email or Password! Try Again!" });
         }
     });
 });
