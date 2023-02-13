@@ -1,6 +1,6 @@
 <%-include("partials/header")%>
 
-<main id="site-main" class="table-div-height-feed d-flex align-items-center bg-light has-bg-img">
+<main id="site-main" class="grad-bg table-div-height-feed d-flex align-items-center bg-light has-bg-img">
     <div class="container text-light">
         <h1 class="mb-3 text-dark text-center"><i class="fa-solid fa-bars-progress"></i> PR Feed</h1>
         <form action="/" method="POST">
@@ -8,7 +8,7 @@
                 <table class="table w-auto mx-auto table-dark table-striped table-hover rounded rounded-3 overflow-hidden" >
                     <thead class="thead-light">
                         <tr class="p-4">
-                            <th class="py-3 px-2 fs-5">Date</th>
+                            <th class="py-3 px-4 fs-5">Date</th>
                             <th class="py-3 px-2 px-md-4 fs-5 text-left">Name</th>
                             <th class="py-3 px-2 px-md-4 fs-5 text-left">Exercise</th>
                             <th class="py-3 px-2 fs-5">Weight (lb)</th>
@@ -19,7 +19,7 @@
                     <tbody>
                         <% for(var i = 0; i < Math.min(10, workouts.length) ; i++) { %>
                             <tr>
-                                <td class="px-2"><%=workouts[i].date.toLocaleDateString('en-us', { year:"2-digit", month:"2-digit", day:"2-digit"}) %></td>
+                                <td class="px-4"><%=workouts[i].date.toLocaleDateString('en-us', { year:"2-digit", month:"2-digit", day:"2-digit"}) %></td>
                                 <td class="px-2 px-md-4 text-left">
                                     <span>
                                         <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="img-rounded" width="35"> <%=workouts[i].name %>

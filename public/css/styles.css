@@ -29,3 +29,9 @@
     }
 
 }
+
+.grad-bg {
+    background-image: url(../images/fire-highlight-bg.png), linear-gradient(to left top, #6c757d, #7e868e, #90979f, #a2a9b0,#b5bbc2, #c1c6cd, #ccd2d7, #d8dde2, #e0e4e8, #e8ebee, #f0f2f4, #f8f9fa);
+    background-size: cover;
+    background-position: center;
+}

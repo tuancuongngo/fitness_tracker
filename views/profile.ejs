@@ -1,7 +1,7 @@
 <%- include('partials/header') %>
 
-<main id="site-main bg-light" style="height: 100vh;">
-  <div class="container d-flex justify-content-center align-items-center flex-column">
+<main style="height: 100vh;" class="grad-bg">
+  <div class="grad-bg container d-flex justify-content-center align-items-center flex-column">
     <div class="user text-center mt-5 mb-2">
       <div class="profile">
         <a href="/user/<%=user._id%>/upload-avatar" class="text-light text-decoration-none" title="Upload new profile picture"">
@@ -26,16 +26,8 @@
           <h6 class="mb-0">Deadlift</h6>
           <span><%=user.deadlift%></span>
         </div>
-
       </div>
-
     </div>
-
-  </div>
-
   </div>
 </main>
-
-
-
 <%- include('partials/footer') %>
