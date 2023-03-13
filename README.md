@@ -2,7 +2,7 @@
 A full-stack MERN (MongoDB, Express, React, Node.js) fitness application designed to help users track their fitness progress, specifically their Personal Records (PR's) for any exercise. The app also enables users see other users' PR's to promote a sense of community that will motivate and help every user reach their fitness goals.
 
 ### Live Demo
-The live demo of the application can be found at http://ec2-54-165-214-57.compute-1.amazonaws.com:3200/
+The live demo of the application can be found at http://ec2-100-25-31-70.compute-1.amazonaws.com:3200/
 
 ### Features
 - User authentication and authorization (In Development)
